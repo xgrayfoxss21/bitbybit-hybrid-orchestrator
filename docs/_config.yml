@@ -1,0 +1,82 @@
+# docs/_config.yml
+# Site config for GitHub Pages using the Just-the-Docs theme.
+
+title: BitNet Hybrid Orchestrator
+description: Hybrid orchestration (hierarchical + parallel + sequential) with BitNet as the core reasoner and TinyBERT guard — edge-ready.
+
+# --- GitHub Pages / routing ---
+url: "https://ShiySabiniano.github.io"
+baseurl: "/bitnet-hybrid-orchestrator"   # repo name for project pages
+permalink: pretty
+repository: "ShiySabiniano/bitnet-hybrid-orchestrator"
+
+# --- Theme ---
+remote_theme: just-the-docs/just-the-docs
+color_scheme: dark
+logo: /assets/logo.svg
+search_enabled: true
+heading_anchors: true
+enable_copy_code_button: true
+back_to_top: true
+back_to_top_text: "Back to top"
+nav_sort: case_insensitive
+
+# --- "Edit this page" links ---
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator"
+gh_edit_branch: "main"
+gh_edit_source: "docs"
+gh_edit_view_mode: "tree"
+
+# --- Top-right links ---
+aux_links:
+  "GitHub Repo": "https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator"
+  "Open in Colab": "https://colab.research.google.com/gist/ShiySabiniano/a34e01bcfc227cddc55a6634f1823539/bitnet_tinybert_orchestrator_colab.ipynb"
+  "Security Policy": "https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/blob/main/SECURITY.md"
+  "Compliance (AGPL §13)": "https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/blob/main/COMPLIANCE.md"
+aux_links_new_tab: true
+
+# --- Footer (AGPL §13 hint: expose commit) ---
+footer_content: >
+  Source: <a href="https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/tree/{{ site.github.build_revision | default: 'HEAD' }}">commit</a>
+  &nbsp;•&nbsp; License: <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0-or-later</a>
+  &nbsp;•&nbsp; Owner: Shiy Sabiniano
+
+# --- Mermaid diagrams ---
+mermaid:
+  enabled: true
+
+# --- "Last edited" (uses GitHub metadata if available) ---
+last_edit_timestamp: true
+last_edit_time_format: "%b %e, %Y"
+
+# --- Plugins allowed by GitHub Pages ---
+plugins:
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+
+# --- Exclusions (keep site lean) ---
+exclude:
+  - "notebooks/"
+  - ".github/"
+  - ".venv/"
+  - "ui/__pycache__/"
+  - "orchestrator/__pycache__/"
+  - "standalone/"
+  - "tests/"
+  - "security/"
+  - "scripts/"
+
+# --- Markdown / kramdown defaults ---
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# --- Defaults for pages ---
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
