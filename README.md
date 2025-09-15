@@ -346,3 +346,7 @@ If you interact with it over a network, you must provide users access to the Cor
 ## Owner
 
 **Foxes Den Corp (Grayfox)** — [https://github.com/xgrayfoxss21](https://github.com/xgrayfoxss21)
+
+## Project Website
+
+**Bitbybit collective** — [ https://bit.foxesden.xyz/](https://bit.foxesden.xyz/)
