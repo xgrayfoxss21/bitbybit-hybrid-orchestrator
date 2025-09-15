@@ -1,0 +1,16 @@
+# orchestrator/requirements.txt
+# Core runtime (CPU-first, edge-friendly)
+onnxruntime==1.18.1
+transformers==4.43.3
+huggingface_hub==0.24.6
+numpy==1.26.4
+pydantic==2.9.2
+PyYAML==6.0.2
+rich==13.8.1
+
+# Retrieval / RAG (optional; comment out if unused)
+duckdb==1.1.0
+faiss-cpu==1.8.0
+
+# CLI helpers (optional)
+typer==0.12.5
