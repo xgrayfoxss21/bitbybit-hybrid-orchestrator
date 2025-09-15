@@ -1,0 +1,37 @@
+# .github/ISSUE_TEMPLATE/config.yml
+# Controls the "New Issue" chooser and helpful redirects.
+
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💬 Q&A / Help (Discussions)
+    url: https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/discussions/categories/q-a
+    about: Ask how-to questions, troubleshoot setup, or get usage tips.
+
+  - name: 💡 Ideas & Feature Brainstorming (Discussions)
+    url: https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/discussions/categories/ideas
+    about: Share concepts and gather feedback before filing a feature request.
+
+  - name: 🧪 Show & Tell (Discussions)
+    url: https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/discussions/categories/show-and-tell
+    about: Post demos, notebooks, integrations, and benchmarks.
+
+  - name: 📢 Announcements & Roadmap
+    url: https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/discussions/categories/announcements
+    about: Follow release notes and roadmap updates.
+
+  - name: 🔐 Report a security vulnerability (private)
+    url: https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/security/advisories/new
+    about: Use a private advisory. See SECURITY.md for the PGP key and safe-harbor policy.
+
+  - name: 📚 Documentation (GitHub Pages)
+    url: https://ShiySabiniano.github.io/bitnet-hybrid-orchestrator/
+    about: Read the docs (Quickstart, Colab, Architecture, API, Chat mode).
+
+  - name: ▶️ Run in Google Colab
+    url: https://colab.research.google.com/gist/ShiySabiniano/a34e01bcfc227cddc55a6634f1823539/bitnet_tinybert_orchestrator_colab.ipynb
+    about: One-click notebook with Cells 1–6 (single-turn) and 6B (chat mode).
+
+  - name: 💻 Local Chat UI (source)
+    url: https://github.com/ShiySabiniano/bitnet-hybrid-orchestrator/blob/main/ui/chat_gradio.py
+    about: Multi-turn Gradio chat app included in the repo (install UI deps to run).
