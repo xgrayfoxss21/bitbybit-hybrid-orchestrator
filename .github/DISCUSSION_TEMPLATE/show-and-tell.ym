@@ -1,0 +1,22 @@
+title: "[Show & Tell] <project or demo name>"
+labels: ["type: showcase"]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      placeholder: Repo, notebook, or demo URL
+  - type: textarea
+    id: what
+    attributes:
+      label: What you built
+      placeholder: Brief description
+  - type: textarea
+    id: how
+    attributes:
+      label: How it uses BitNet/TinyBERT/Orchestrator
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots / notes
+      description: Paste image links or descriptions.
