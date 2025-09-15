@@ -1,0 +1,6 @@
+# ui/requirements.txt
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Minimal, optional UI deps (kept separate from orchestrator core)
+
+gradio==4.39.0
+nest_asyncio==1.6.0
