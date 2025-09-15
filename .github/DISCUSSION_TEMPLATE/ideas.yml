@@ -1,0 +1,32 @@
+title: "[Idea] <short summary>"
+labels: ["type: idea", "status: needs-triage"]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: One sentence
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Pain
+      placeholder: Who benefits and why?
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      placeholder: High-level design, APIs, or UX
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: Backward compatible
+        - label: Tests + docs included
+        - label: Performance impact understood
