@@ -1,0 +1,30 @@
+title: "[Q&A] <your question here>"
+labels: ["type: question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Be specific; include expected vs. actual behavior.
+      placeholder: What are you trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproducible input
+      description: Smallest input that shows the issue (no secrets).
+      render: bash
+      placeholder: |
+        # steps / input
+        python orchestrator/cli.py --input "..."
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      placeholder: OS, Python, onnxruntime, transformers versions
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      placeholder: Workarounds, configs, docs you’ve read
