@@ -1,0 +1,25 @@
+title: "[Announcement] "
+labels: ["type: announcement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for official updates. Keep it clear and link PRs/releases.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: One-line headline
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What changed? Why does it matter?
+      placeholder: Key points, dates, and links
+  - type: input
+    id: links
+    attributes:
+      label: Related links
+      placeholder: Release notes, PRs, docs
