@@ -1,0 +1,29 @@
+title: "RFC: <concise title>"
+labels: ["type: rfc", "status: draft"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      placeholder: What problem are we solving?
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+  - type: textarea
+    id: design
+    attributes:
+      label: Proposed design
+      description: Include schemas, sequence diagrams, or pseudo-code.
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Compatibility, security/safety, performance, licensing
+  - type: textarea
+    id: rollout
+    attributes:
+      label: Rollout plan
+      description: Milestones, flags, migration, deprecation
