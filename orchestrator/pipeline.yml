@@ -1,0 +1,86 @@
+# orchestrator/pipeline.yml
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Schema: pipeline.v1 — single-turn example (no rolling transcript)
+
+version: 0.1.0
+schema: pipeline.v1
+name: single_turn_orchestrator
+description: >
+  Single-turn run of the hybrid DAG:
+  text → parse → [claim1, claim2] (parallel) → reduce,
+  with TinyBERT-style guard applied on input and output.
+
+budgets:
+  latency_ms: 2000          # soft target per run
+  max_concurrency: 2        # parallel node cap
+  memory_mb: 1200           # informational (not enforced)
+
+models:
+  reasoner: bitnet-s-1.58b  # label only; map to your backend at runtime
+  guard: tinybert-onnx-int8 # label only; ONNX optional (regex fallback)
+
+policies:
+  thresholds:
+    toxicity_block: 0.5     # block if predicted toxicity > 0.50
+    pii_redact: 0.7         # redact if PII presence ≥ 0.70
+    jailbreak_block: 0.6    # block if jailbreak score > 0.60
+
+conversation:
+  kind: none                # single-turn; no transcript window maintained
+
+io:
+  inputs:
+    text:
+      type: string
+      required: true
+      description: "User-provided text to analyze."
+  outputs:
+    reduce.text:
+      type: string
+      description: "Final executive brief synthesized from prior nodes."
+
+# Default “claims” used by claimcheck nodes.
+vars:
+  max_sentences: 3
+  claim1_text: "BitNet uses 1.58-bit weights"
+  claim2_text: "TinyBERT is effective for classification"
+
+nodes:
+  - id: parse
+    agent: bitnet.summarizer
+    deps: []
+    guard_pre: true
+    guard_post: true
+    timeout_ms: 900
+    max_retries: 0
+    params:
+      max_sentences: 3  # or ${vars.max_sentences}
+
+  - id: claim1
+    agent: bitnet.claimcheck
+    deps: [parse]
+    guard_pre: false
+    guard_post: true
+    timeout_ms: 600
+    max_retries: 1
+    params:
+      claim: "BitNet uses 1.58-bit weights"  # or ${vars.claim1_text}
+
+  - id: claim2
+    agent: bitnet.claimcheck
+    deps: [parse]
+    guard_pre: false
+    guard_post: true
+    timeout_ms: 600
+    max_retries: 1
+    params:
+      claim: "TinyBERT is effective for classification"  # or ${vars.claim2_text}
+
+  - id: reduce
+    agent: bitnet.synthesis
+    deps: [claim1, claim2]
+    guard_pre: false
+    guard_post: true
+    timeout_ms: 800
+    max_retries: 0
+    params: {}
