@@ -1,0 +1,160 @@
+# .github/workflows/ci.yml
+# Minimal CI for BitNet Hybrid Orchestrator
+# - Validates YAML pipeline files
+# - Optionally smokes Python deps (non-blocking)
+# - Emits AGPL §13 "Source" hint with commit URL
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REPO_URL: https://github.com/${{ github.repository }}
+  APP_COMMIT_SHA: ${{ github.sha }}
+
+jobs:
+  yaml-validate:
+    name: Validate pipeline YAML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install minimal deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml rich
+
+      - name: Echo AGPL Source (header-equivalent)
+        run: |
+          echo "X-AGPL-Source: ${REPO_URL}/tree/${APP_COMMIT_SHA}"
+
+      - name: Validate YAML structure
+        run: |
+          python - <<'PY'
+          import os, sys, yaml
+          from glob import glob
+
+          paths = [
+              "orchestrator/pipeline.yml",
+              "orchestrator/pipeline.chat.yml",
+              "docs/_config.yml",
+          ]
+          # Include only files that exist
+          paths = [p for p in paths if os.path.exists(p)]
+          if not paths:
+              print("No YAML files found to validate.")
+              sys.exit(0)
+
+          def check_pipeline(doc, fname):
+              # very light schema checks
+              required_top = ["version", "schema", "name"]
+              for k in required_top:
+                  assert k in doc, f"{fname}: missing top-level key '{k}'"
+
+              if "nodes" in doc:
+                  assert isinstance(doc["nodes"], list), f"{fname}: 'nodes' must be a list"
+                  ids = set()
+                  for n in doc["nodes"]:
+                      assert "id" in n and "agent" in n, f"{fname}: each node needs 'id' and 'agent'"
+                      assert n["id"] not in ids, f"{fname}: duplicate node id '{n['id']}'"
+                      ids.add(n["id"])
+                      for d in n.get("deps", []) or []:
+                          assert isinstance(d, str), f"{fname}: deps must be strings (node ids)"
+
+          for p in paths:
+              with open(p, "r", encoding="utf-8") as f:
+                  data = yaml.safe_load(f)
+              # Only apply pipeline checks to orchestrator files
+              if p.startswith("orchestrator/"):
+                  check_pipeline(data, p)
+              print(f"[OK] {p}")
+
+          print("YAML validation complete.")
+          PY
+
+  python-smoke:
+    name: Python deps smoke (non-blocking)
+    runs-on: ubuntu-latest
+    continue-on-error: true   # keep CI green if heavy wheels fail to install
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+          cache-dependency-path: |
+            orchestrator/requirements.txt
+            ui/requirements.txt
+
+      - name: Install orchestrator deps
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f orchestrator/requirements.txt ]; then
+            pip install -r orchestrator/requirements.txt
+          else
+            echo "orchestrator/requirements.txt not found (skipping)."
+          fi
+
+      - name: Install UI deps (optional)
+        run: |
+          if [ -f ui/requirements.txt ]; then
+            pip install -r ui/requirements.txt
+          else
+            echo "ui/requirements.txt not found (skipping)."
+          fi
+        continue-on-error: true
+
+      - name: Print versions (informational)
+        run: |
+          python - <<'PY'
+          import json
+          pkgs = ["onnxruntime","transformers","huggingface_hub","numpy","pydantic","yaml","duckdb","faiss","gradio","nest_asyncio"]
+          versions = {}
+          for p in pkgs:
+              try:
+                  mod = __import__(p if p != "yaml" else "yaml")
+                  v = getattr(mod, "__version__", None) or getattr(mod, "version", None) or "unknown"
+              except Exception as e:
+                  v = f"not-installed ({type(e).__name__})"
+              versions[p] = str(v)
+          print(json.dumps(versions, indent=2))
+          PY
+
+      - name: Import smoke (rich + yaml + basic parse)
+        run: |
+          python - <<'PY'
+          import yaml, pathlib
+          p = pathlib.Path("orchestrator/pipeline.yml")
+          if p.exists():
+              data = yaml.safe_load(p.read_text(encoding="utf-8"))
+              print("pipeline.name:", data.get("name"))
+              print("nodes:", [n.get("id") for n in data.get("nodes", [])])
+          else:
+              print("orchestrator/pipeline.yml not found (skipping).")
+          PY
