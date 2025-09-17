@@ -3,7 +3,7 @@
 Run the **BitNet Hybrid Orchestrator** end-to-end with zero local setup. This notebook includes the orchestrator core, safety guard, demo agents, and optional Web UIs (single-turn and multi-turn chat).
 
 **Open the notebook:**  
-➡️ <https://colab.research.google.com/gist/ShiySabiniano/a34e01bcfc227cddc55a6634f1823539/bitnet_tinybert_orchestrator_colab.ipynb>
+➡️ <[https://colab.research.google.com/gist/ShiySabiniano/a34e01bcfc227cddc55a6634f1823539/bitnet_tinybert_orchestrator_colab.ipynb](https://colab.research.google.com/github/xgrayfoxss21/bitbybit-hybrid-orchestrator/blob/main/notebooks/bitbybit-hybrid-orchestrator.ipynb)>
 
 > Tip: Run cells **in order**. Cells **6** and **6B** depend on cells **1 → 5**.
 
