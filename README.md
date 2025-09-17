@@ -79,7 +79,7 @@
 
 </div>
 
-> **Status:** alpha v0.002 • **License:** AGPL‑3.0‑or‑later • **Owner:** **Foxes Den Corp (Grayfox)**
+> **Status:** alpha v0.001 • **License:** AGPL‑3.0‑or‑later • **Owner:** **Foxes Den Corp (Grayfox)**
 
 ---
 
