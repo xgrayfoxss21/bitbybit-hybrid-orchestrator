@@ -22,7 +22,7 @@
 
   <!-- Row 1: Primary badges -->
 
-  <a href="https://colab.research.google.com/drive/1WZw9Ro4L1X9pZP34VEbJ0pTs5IbdPREv?usp=sharing">
+  <a href="[https://colab.research.google.com/drive/1WZw9Ro4L1X9pZP34VEbJ0pTs5IbdPREv?usp=sharing](https://colab.research.google.com/github/xgrayfoxss21/bitbybit-hybrid-orchestrator/blob/main/notebooks/bitbybit-hybrid-orchestrator.ipynb)">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Run in Colab" height="28">
   </a>
   &nbsp;
