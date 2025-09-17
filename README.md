@@ -22,7 +22,7 @@
 
   <!-- Row 1: Primary badges -->
 
-  <a href="[https://colab.research.google.com/drive/1WZw9Ro4L1X9pZP34VEbJ0pTs5IbdPREv?usp=sharing](https://colab.research.google.com/github/xgrayfoxss21/bitbybit-hybrid-orchestrator/blob/main/notebooks/bitbybit-hybrid-orchestrator.ipynb)">
+  <a href="https://colab.research.google.com/github/xgrayfoxss21/bitbybit-hybrid-orchestrator/blob/main/notebooks/bitbybit-hybrid-orchestrator.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Run in Colab" height="28">
   </a>
   &nbsp;
@@ -67,15 +67,15 @@
   <!-- Row 3: Quick links -->
 
 <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator"><b>🏠 Repo</b></a>
- •  <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator/issues"><b>🐞 Issues</b></a>
- •  <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator/discussions"><b>💬 Discussions</b></a>
- •  <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator/releases"><b>📦 Releases</b></a>
- •  <a href="docs/roadmap.md"><b>🗺️ Roadmap</b></a>
- •  <a href="docs/api.md"><b>🧩 Pipeline API</b></a>
- •  <a href="docs/chat.md"><b>💬 Chat mode</b></a>
- •  <a href="orchestrator/pipeline.yml"><b>🧪 Example pipeline.yml</b></a>
- •  <a href="CHANGELOG.md"><b>📝 Changelog</b></a>
- •  <a href="https://github.com/xgrayfoxss21"><b>🔗 GitHub Profile</b></a>
+ •  <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator/issues"><b>🐞 Issues</b></a>
+ •  <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator/discussions"><b>💬 Discussions</b></a>
+ •  <a href="https://github.com/xgrayfoxss21/bitbybit-hybrid-orchestrator/releases"><b>📦 Releases</b></a>
+ •  <a href="docs/roadmap.md"><b>🗺️ Roadmap</b></a>
+ •  <a href="docs/api.md"><b>🧩 Pipeline API</b></a>
+ •  <a href="docs/chat.md"><b>💬 Chat mode</b></a>
+ •  <a href="orchestrator/pipeline.yml"><b>🧪 Example pipeline.yml</b></a>
+ •  <a href="CHANGELOG.md"><b>📝 Changelog</b></a>
+ •  <a href="https://github.com/xgrayfoxss21"><b>🔗 GitHub Profile</b></a>
 
 </div>
 
@@ -135,7 +135,7 @@ flowchart TD
 ### Option 1 — Colab (zero setup)
 
 Open the notebook:
-**[▶ Launch in Colab](https://colab.research.google.com/drive/1WZw9Ro4L1X9pZP34VEbJ0pTs5IbdPREv?usp=sharing)**
+**[▶ Launch in Colab](https://colab.research.google.com/github/xgrayfoxss21/bitbybit-hybrid-orchestrator/blob/main/notebooks/bitbybit-hybrid-orchestrator.ipynb)**
 
 * **System init + tests:** run **Cell 6/6** (Complete System).
 * **Interactive Web UI (chat + builder + monitor):** run **Cell 7/7**.
@@ -230,7 +230,7 @@ python ui/chat_gradio.py
 │  ├─ gradio_demo.py            # Single-turn local app
 │  └─ chat_gradio.py            # Multi-turn local chat app
 ├─ notebooks/
-│  └─ BitByBit_TinyBERT_Orchestrator_Colab.ipynb
+│  └─ bitbybit-hybrid-orchestrator.ipynb
 ├─ .github/
 │  ├─ ISSUE_TEMPLATE/
 │  │  ├─ bug_report.md
@@ -304,7 +304,7 @@ nodes:
 
 If you host a modified version over a network, **AGPL §13** requires offering users the **Corresponding Source** of your modifications:
 
-* Add a **“Source”** link (or `/source` endpoint) that points to the exact commit running.
+* Add a **"Source"** link (or `/source` endpoint) that points to the exact commit running.
 * Include an HTTP header:
 
   ```
@@ -316,7 +316,7 @@ If you host a modified version over a network, **AGPL §13** requires offering u
 
 ## Models & third‑party licenses
 
-This repo’s code is AGPL‑3.0‑or‑later. **Model weights and some libraries may have different licenses** (Apache‑2.0, MIT, OpenRAIL, etc.). Track them in **THIRD\_PARTY\_LICENSES.md** and respect each model’s terms.
+This repo's code is AGPL‑3.0‑or‑later. **Model weights and some libraries may have different licenses** (Apache‑2.0, MIT, OpenRAIL, etc.). Track them in **THIRD\_PARTY\_LICENSES.md** and respect each model's terms.
 
 ---
 
